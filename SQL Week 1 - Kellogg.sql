@@ -2,7 +2,7 @@
 Show the SQL query(s) that support your conclusion.
 */
 
-SELECT FLIGHT, MAX(DISTANCE) FROM FLIGHTS 
+SELECT FLIGHT, MAX(DISTANCE) FROM FLIGHTS; 
 
 /*ANSWER: Flight 1545 is the longest at 4983
 */
@@ -10,11 +10,11 @@ SELECT FLIGHT, MAX(DISTANCE) FROM FLIGHTS
 /*2. What are the different numbers of engines in the planes table? For each number of engines, which aircraft have the most number of seats? Show the SQL statement(s) that support your result.
 */
 
-SELECT DISTINCT(ENGINES) From PLANES order by ENGINES asc
+SELECT DISTINCT(ENGINES) From PLANES order by ENGINES asc;
 
 SELECT TAILNUM, YEAR, TYPE, manufacturer, model, ENGINES, MAX(SEATS), SPEED, ENGINE From PLANES 
 Group BY ENGINES
-ORDER BY ENGINES ASC
+ORDER BY ENGINES ASC;
 
 /*ANSWER Q1: There are 4 different engine numbers in the table. 1, 2, 3, and 4
 ANSWER Q2: 
@@ -26,7 +26,7 @@ Tail Number N381AA has 450 seats and 4 engines
 
 /*3. Show the total number of flights.*/
 
-SELECT COUNT(flight) from FLIGHTS
+SELECT COUNT(flight) from FLIGHTS;
 
 /*ANSWER: 327346
 */
@@ -38,7 +38,7 @@ SELECT AL.NAME, COUNT(FL.FLIGHT)
 from FLIGHTS FL
 JOIN AIRLINES AL on AL.CARRIER = FL.CARRIER
 GROUP BY AL.NAME
-ORDER BY AL.NAME ASC
+ORDER BY AL.NAME ASC;
 
 /*ANSWER
 AirTran Airways Corporation	-3175
@@ -65,7 +65,7 @@ SELECT AL.NAME, COUNT(FL.FLIGHT)
 from FLIGHTS FL
 JOIN AIRLINES AL on AL.CARRIER = FL.CARRIER
 GROUP BY AL.NAME
-ORDER BY COUNT(FL.FLIGHT) DESC
+ORDER BY COUNT(FL.FLIGHT) DESC;
 
 /* ANSWER:
 United Air Lines Inc.	57782
@@ -92,7 +92,7 @@ SELECT AL.NAME, COUNT(FL.FLIGHT)
 from FLIGHTS FL
 JOIN AIRLINES AL on AL.CARRIER = FL.CARRIER
 GROUP BY AL.NAME
-ORDER BY COUNT(FL.FLIGHT) DESC limit 5
+ORDER BY COUNT(FL.FLIGHT) DESC limit 5;
 
 /* ANSWER:
 United Air Lines Inc.	57782
@@ -109,7 +109,7 @@ from FLIGHTS FL
 JOIN AIRLINES AL on AL.CARRIER = FL.CARRIER
 Where FL.DISTANCE > 1000
 GROUP BY AL.NAME
-ORDER BY COUNT(FL.FLIGHT) DESC limit 5
+ORDER BY COUNT(FL.FLIGHT) DESC limit 5;
 
 /* ANSWER:
 United Air Lines Inc.	40608
@@ -129,7 +129,7 @@ from FLIGHTS FL
 JOIN AIRLINES AL on AL.CARRIER = FL.CARRIER
 Where FL.origin = 'JFK'
 GROUP BY AL.NAME
-ORDER BY COUNT(FL.FLIGHT)
+ORDER BY COUNT(FL.FLIGHT);
 
 /* ANSWER:
 Hawaiian Airlines Inc.	4983.00
