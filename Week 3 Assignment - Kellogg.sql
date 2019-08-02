@@ -1,3 +1,14 @@
+CREATE DATABASE IF NOT EXISTS key_card;
+-- DROP DATABASE key_card
+
+USE key_card;
+
+/*There are six users, and four groups. Modesto and Ayine are in group “I.T.” Christopher and Cheong woo are in group
+“Sales”. There are four rooms: “101”, “102”, “Auditorium A”, and “Auditorium B”. Saulat is in group
+“Administration.” Group “Operations” currently doesn’t have any users assigned. I.T. should be able to access Rooms
+101 and 102. Sales should be able to access Rooms 102 and Auditorium A. Administration does not have access to any
+rooms. Heidy is a new employee, who has not yet been assigned to any group.*/
+
 CREATE TABLE IF NOT EXISTS user (
 table_ID INT AUTO_INCREMENT,
 user_ID INT NOT NULL,
@@ -86,6 +97,7 @@ FROM department d
 Right JOIN user_department UD on UD.dept_ID = d.dept_ID  -- this was not expressly said in the request, however, if I was building a report I would want to know groups with no people and users with no group
 LEFT JOIN USER u on u.user_ID = UD.user_ID -- Left Join here pull all values from the "Left" table meaning the user table even if they are null
 ORDER BY d.dept_name ASC, u.user_name ASC;
+
 -- Request 2. All rooms, and the groups assigned to each room. The rooms should appear even if no groups have been assigned to them.
 
 SELECT r.room_name, d.dept_name AS "GROUP" 
