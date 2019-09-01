@@ -1,0 +1,83 @@
+---
+title: "607 Assignment 1"
+author: "John Kellogg"
+date: "8/29/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+## Assignment Task:  
+
+1.Study the dataset and the associated description of the data (i.e. “data dictionary”).   
+2. Create a data frame with a subset of the columns.    
+ + Include the column that indicates edible or poisonous and three or four other columns.
+3. Add meaningful column names  
+4. Replace the abbreviations used in the data—for example  
+5. Deliverable is the R code to perform these transformation tasks.  
+  
+  
+  
+#### Data Import and initial setup:  
+```{r}
+Mushroom_data<-read.csv(url("https://archive.ics.uci.edu/ml/machine-learning-databases/mushroom/agaricus-lepiota.data"))
+Mushroom<- as.data.frame(Mushroom_data)
+names(Mushroom) = c("CONSUMABLE", "CAP_SHAPE", "CAP_SURFACE", "CAP_COLOR", "BRUISES", "ODOR", "GILL_ATTACHMENT", "GILL_SPACING", "GILL_SIZE", "GILL_COLOR", "STALK_SHAPE", "STALK_ROOT", "STALK_SURFACE_ABOVE_RING", "STALK_SURFACE_BELOW_RING", "STALK_COLOR_ABOVE_RING", "STALK_COLOR_ABOVE_RING", "VEIL_TYPE", "VEIL_COLOR", "RING_NUMBER", "RING_TYPE", "SPORE_PRINT_COLOR", "POPULATION", "HABITAT")
+Mushroom[] <- lapply(Mushroom, as.character)
+```
+#### Modifying CONSUMABLE
+```{r}
+Mushroom$CONSUMABLE[Mushroom$CONSUMABLE == "e"] <- "edible"
+Mushroom$CONSUMABLE[Mushroom$CONSUMABLE == "p"] <- "poisonous"
+```
+#### Modifying Cap Shape
+```{r}
+Mushroom$CAP_SHAPE[Mushroom$CAP_SHAPE == "b"] <- "bell"
+Mushroom$CAP_SHAPE[Mushroom$CAP_SHAPE == "x"] <- "convex"
+Mushroom$CAP_SHAPE[Mushroom$CAP_SHAPE == "C"] <- "conical"
+Mushroom$CAP_SHAPE[Mushroom$CAP_SHAPE == "f"] <- "flat"
+Mushroom$CAP_SHAPE[Mushroom$CAP_SHAPE == "k"] <- "knobbed"
+Mushroom$CAP_SHAPE[Mushroom$CAP_SHAPE == "s"] <- "sunken"
+```
+#### Modifying Odor
+```{r}
+Mushroom$ODOR[Mushroom$ODOR == "a"] <- "almond"
+Mushroom$ODOR[Mushroom$ODOR == "l"] <- "anise"
+Mushroom$ODOR[Mushroom$ODOR == "c"] <- "creosote"
+Mushroom$ODOR[Mushroom$ODOR == "y"] <- "fishy"
+Mushroom$ODOR[Mushroom$ODOR == "f"] <- "foul"
+Mushroom$ODOR[Mushroom$ODOR == "m"] <- "musty"
+Mushroom$ODOR[Mushroom$ODOR == "n"] <- "none"
+Mushroom$ODOR[Mushroom$ODOR == "p"] <- "pungent"
+Mushroom$ODOR[Mushroom$ODOR == "s"] <- "spicy"
+```
+#### Modifying Population
+```{r}
+Mushroom$POPULATION[Mushroom$POPULATION == "a"] <- "abundant"
+Mushroom$POPULATION[Mushroom$POPULATION == "c"] <- "clustered"
+Mushroom$POPULATION[Mushroom$POPULATION == "n"] <- "numerous"
+Mushroom$POPULATION[Mushroom$POPULATION == "s"] <- "scattered"
+Mushroom$POPULATION[Mushroom$POPULATION == "v"] <- "several"
+Mushroom$POPULATION[Mushroom$POPULATION == "y"] <- "solitary"
+```
+#### Modifying Habitat
+```{r}
+Mushroom$HABITAT[Mushroom$HABITAT == "g"] <- "grasses"
+Mushroom$HABITAT[Mushroom$HABITAT == "l"] <- "leaves"
+Mushroom$HABITAT[Mushroom$HABITAT == "m"] <- "meadows"
+Mushroom$HABITAT[Mushroom$HABITAT == "p"] <- "paths"
+Mushroom$HABITAT[Mushroom$HABITAT == "u"] <- "urban"
+Mushroom$HABITAT[Mushroom$HABITAT == "w"] <- "waste"
+Mushroom$HABITAT[Mushroom$HABITAT == "d"] <- "woods"
+
+```
+### Results: 
+
+```{r, echo=FALSE}
+Mushroomset1<- subset(Mushroom, select = c(CONSUMABLE,CAP_SHAPE,ODOR,POPULATION,HABITAT))
+summary(Mushroomset1)
+head(Mushroomset1, n=20)
+```
+
+
